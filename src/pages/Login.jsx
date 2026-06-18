@@ -33,7 +33,7 @@ return (
             <button onClick={handleLogin}>Login</button>
             {token && (
                 <p>
-                    Token eceived successfully
+                    Token Received successfully
                 </p>
             )}
     </div>
