@@ -148,14 +148,12 @@ const updateArticle = async (
                      }>
                         Edit
                         </button>
-
-                              <button
+                        <button
                   onClick={() =>
                       deleteArticle(article.id)
                         }>
                         Delete
                         </button>
-
                         <hr />
                 </div>
             ))}
