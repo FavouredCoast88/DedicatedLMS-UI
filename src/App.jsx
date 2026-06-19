@@ -5,11 +5,17 @@ import News from "./pages/News";
 function App() {
   return (
     <div className="container">
-      <h1>Dedicated News UI</h1>
-      <Login />
-      <Articles />
-      <News />
-    </div>
+
+  <header className="app-header">
+    <h1>Dedicated News UI</h1>
+    <p>Manage articles and view external news</p>
+  </header>
+
+  <Login />
+  <Articles />
+  <News />
+
+</div>
   );
 }
 

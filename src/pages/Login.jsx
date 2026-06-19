@@ -3,7 +3,8 @@ import API from "../services/api";
 
 function Login() {
     const [username, setUsername] = useState("");
-    const [token, setToken] = useState("");
+    const [token, setToken] = useState(
+    localStorage.getItem("token") || "");
     
 const handleLogin = async () => {
     try{
@@ -21,6 +22,12 @@ const handleLogin = async () => {
     }
 };
 
+const handleLogout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    alert("Logged out");
+};
+
 return (
     <div>
         <h2>Login</h2>
@@ -30,7 +37,16 @@ return (
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             />
-            <button onClick={handleLogin}>Login</button>
+            <button 
+               onClick={handleLogin}>
+                Login
+            </button>
+            <button
+              type="button"
+               onClick={handleLogout}>
+                Logout
+            </button>
+
             {token && (
                 <p>
                     Token Received successfully
