@@ -1,10 +1,11 @@
 import { useState } from "react";
 import API from "../services/api";
+import storageService from "../services/storageService";
 
 function Login() {
     const [username, setUsername] = useState("");
     const [token, setToken] = useState(
-    localStorage.getItem("token") || "");
+    storageService.getToken() || "");
     
 const handleLogin = async () => {
     try{
@@ -13,7 +14,8 @@ const handleLogin = async () => {
         });
         setToken(response.data.token);
 
-        localStorage.setItem("token", response.data.token);
+         storageService.saveToken(
+         response.data.token);
         alert("Login successful!");
 
     }catch (error) {
@@ -23,7 +25,7 @@ const handleLogin = async () => {
 };
 
 const handleLogout = () => {
-    localStorage.removeItem("token");
+    storageService.removeToken();
     setToken("");
     alert("Logged out");
 };

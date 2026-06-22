@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import API from "../services/API";
 import CreateArticle from "../components/CreateArticle";
+import storageService from "../services/storageService";
 
 function Articles() {
     const [articles, setArticles] = useState([]);
@@ -19,7 +20,7 @@ function Articles() {
     };
     const deleteArticle = async (id) => {
         try {
-            const token = localStorage.getItem("token");
+            const token = storageService.getToken();
 
             await API.delete(
                 `/articles/${id}`,
@@ -74,7 +75,7 @@ const updateArticle = async (
     try {
 
         const token =
-            localStorage.getItem("token");
+            storageService.getToken();
 
         await API.put(
             `/articles/${id}`,
