@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import API from "../services/API";
 import CreateArticle from "../components/CreateArticle";
+import storageService from "../services/storageService";
 
 function Articles() {
     const [articles, setArticles] = useState([]);
@@ -19,7 +20,7 @@ function Articles() {
     };
     const deleteArticle = async (id) => {
         try {
-            const token = localStorage.getItem("token");
+            const token = storageService.getToken();
 
             await API.delete(
                 `/articles/${id}`,
@@ -74,7 +75,7 @@ const updateArticle = async (
     try {
 
         const token =
-            localStorage.getItem("token");
+            storageService.getToken();
 
         await API.put(
             `/articles/${id}`,
@@ -120,6 +121,9 @@ const updateArticle = async (
             <CreateArticle
                 onArticleCreated ={fetchArticles}
             />
+
+            <div className="search-section">
+
             <input
             type="text"
             placeholder="Search by title"
@@ -135,10 +139,10 @@ const updateArticle = async (
                 <button onClick={fetchArticles}>
                 Show All
                 </button>
-
+              </div>
             <h2>Articles</h2>
             {articles.map(article => (
-                <div key={article.id}>
+                <div key={article.id}className="article-card">
                     <h3>{article.title}</h3>
                     <p>{article.author}</p>
                     <p>{article.content}</p>

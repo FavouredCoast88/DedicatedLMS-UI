@@ -1,5 +1,6 @@
 import { useState} from 'react';
 import API from "../services/API";
+import storageService from "../services/storageService";
 
 function CreateArticle({onArticleCreated }) {
     const [title, setTitle] = useState('');
@@ -9,7 +10,7 @@ function CreateArticle({onArticleCreated }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const token = localStorage.getItem("token");
+            const token = storageService.getToken();
             await API.post("/articles",{title, author, content}, {
                 headers: {
                     Authorization: `Bearer ${token}`

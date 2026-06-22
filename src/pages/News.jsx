@@ -33,7 +33,7 @@ function News() {
  
             {news.map(item => (
  
-                <div key={item.id}>
+                <div key={item.id}className="news-card">
  
                     <h3>{item.title}</h3>
  
