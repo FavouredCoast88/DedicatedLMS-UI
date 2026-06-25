@@ -1,5 +1,5 @@
 import { useState} from 'react';
-import API from "../services/API";
+import API from "../services/api";
 import storageService from "../services/storageService";
 
 function CreateArticle({onArticleCreated }) {
